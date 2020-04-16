@@ -5,6 +5,10 @@
  * If it doesn't complie check you USB Type
  * 
  * IMPORTANT:
+ * 
+ * !!!Dont forget the logic level shifter!!!
+ * RC receivers work with 5V but the teensy can only handle 3.3V
+ * 
  * You have to set the right Board Type:
  * Tools -> Board -> Teensy 3.x
  * You have to set the right USB Type:
@@ -19,10 +23,10 @@
 
 PulsePositionInput myIn;          //generate ppm input
 
-unsigned int ch[8];               //place for saving rc values 
+unsigned int ch[CHNUM];           //place for saving rc values 
 
 void setup() {
-  myIn.begin(10);                 //start to litsen on pin ten for ppm signal
+  myIn.begin(10);                 //start to litsen on pin ten for ppm signal (possible pins: 5, 6, 9, 10, 20, 21, 22, 23)
   Joystick.useManualSend(true);   //Only send Joysick values when all of them are ready
 
 }
